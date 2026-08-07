@@ -8,8 +8,7 @@ The following formula computes the n-th term of an arithmetic sequence:
 where a_0 is the first term, d is the common difference, and n is the step index.
 
 Tasks:
-a. Set a_0 = 0.1, d = 0.1, and compute a_9 (the 10th term, n=9) using the formula.
-Store it in a variable called term_formula.
+a. Set a_0 = 0.1, d = 0.1, and compute a_9 (the 10th term, n=9) using the formula. Store it in a variable called term_formula.
 b. Now compute the same value by adding 0.1 nine times cumulatively: cumulative = 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 (Yes, write it out explicitly. No loops yet).
 c. Print both values. Are they equal? Use == to check and print the result.
 d. Compute the absolute difference between the two. Is it exactly zero?
@@ -34,12 +33,7 @@ print(abs(cumulative - a_9))
 
 # 1.e
 """
-This happens because decimals in Python are stored in bytes and cannot be
-represented exactly — there are limits. It's similar to 0.3333..., where
-even though 1/3 is a repeating decimal, a computer cannot express infinite
-decimals, so at some point it has to round in order to operate. That's why,
-during cumulative sums, the tiny rounding errors in each decimal keep
-accumulating and eventually become noticeable.
+This happens because decimals in Python are stored in bytes and cannot be represented exactly — there are limits. It's similar to 0.3333..., where even though 1/3 is a repeating decimal, a computer cannot express infinite decimals, so at some point it has to round in order to operate. That's why, during cumulative sums, the tiny rounding errors in each decimal keep accumulating and eventually become noticeable.
 """
 
 
@@ -76,10 +70,7 @@ x_wrong, y_wrong = radius_cm * math.cos(angle_degrees), radius_cm * math.sin(ang
 result_wrong = pow(x_wrong, 2) + pow(y_wrong, 2)
 print(abs(100 - result_wrong))
 """
-The result still holds despite the angle mistake because, even though it's
-not the angle we intended, the sides remain consistent relative to the
-originally chosen radius — that's why Pythagoras' theorem still checks out
-when we use it.
+The result still holds despite the angle mistake because, even though it's not the angle we intended, the sides remain consistent relative to the originally chosen radius — that's why Pythagoras' theorem still checks out when we use it.
 """
 
 # 2.e
@@ -89,9 +80,7 @@ Because this isn't a syntax error or anything related to the language itself
 - Imagine we want to perform the following operation: (3 + 6) / 3, expecting
   a result of 3; however, when writing the math operation we instead write:
     3 + 6 / 3   =>   4
-  Even though there's no syntax error, there is an interpretation error,
-  because we failed to express the intended math operation correctly, so we
-  don't get the expected result.
+  Even though there's no syntax error, there is an interpretation error, because we failed to express the intended math operation correctly, so we don't get the expected result.
 """
 
 
@@ -173,9 +162,7 @@ print(m)
 
 # 4.b
 """
-This code computes the distance between New York City and Paris using the
-Haversine formula. The numbers correspond to the Earth's radius and each
-city's coordinates.
+This code computes the distance between New York City and Paris using the Haversine formula. The numbers correspond to the Earth's radius and each city's coordinates.
 """
 
 # 4.c
@@ -195,9 +182,7 @@ print("The distance between New York and Paris is: " + str(distance_km) + " km")
 
 # 4.d
 """
-This code computes the great-circle (straight-line, over the surface)
-distance between two given locations (New York and Paris) using the
-Haversine formula. The code assumes the Earth is a perfect sphere.
+This code computes the great-circle (straight-line, over the surface) distance between two given locations (New York and Paris) using the Haversine formula. The code assumes the Earth is a perfect sphere.
 Coordinates:
   - lat_new_york: 40.7128° N
   - lon_new_york: -74.0060° W

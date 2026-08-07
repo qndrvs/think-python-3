@@ -4,21 +4,14 @@
 # 1. Ask a virtual assistant
 """
 a)
-Because Python reserves that word to define a class in the code — if you used
-that same word for a variable or function name, there would be an error when
-the code is parsed.
-The same applies to every KEYWORD: they can't be used because they already
-have a predefined role.
+Because Python reserves that word to define a class in the code — if you used that same word for a variable or function name, there would be an error when the code is parsed. The same applies to every KEYWORD: they can't be used because they already have a predefined role.
 
 b)
-Because they are built-in functions, and if we decide to assign a value to
-one of them, we lose that function's functionality. For example, if we define:
+Because they are built-in functions, and if we decide to assign a value to one of them, we lose that function's functionality. For example, if we define:
 - int = 123
-Then if at some point we wanted to use the built-in function int; that is,
-convert some numeric-like data type to an integer, such as:
+Then if at some point we wanted to use the built-in function int; that is, convert some numeric-like data type to an integer, such as:
 - int("12")
-We won't be able to, because we assigned the value "123" to int and we can
-no longer use its properties.
+We won't be able to, because we assigned the value "123" to int and we can no longer use its properties.
 
 c)
 The most commonly used functions are:
@@ -88,9 +81,7 @@ d)
 # 2. Exercise
 """
 a)
-17 = n is illegal because, by the same analysis, it is analogous to KEYWORDS:
-while 17 itself is not one, it does have a predefined value that Python
-interprets as the numeric value 17 (possibly parsed as such internally).
+17 = n is illegal because, by the same analysis, it is analogous to KEYWORDS: while 17 itself is not one, it does have a predefined value that Python interprets as the numeric value 17 (possibly parsed as such internally).
 
 b)
 Both variables take the value 1 in: x = y = 1
@@ -102,8 +93,7 @@ d)
 A syntax error.
 
 e)
-An error because the module cannot be found, since it must be declared with
-its correct name, which in this case is "math".
+An error because the module cannot be found, since it must be declared with its correct name, which in this case is "math".
 """
 
 
