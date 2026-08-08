@@ -10,8 +10,8 @@ Working through *Think Python 3* by Allen B. Downey - exercises and extended pro
 | 02      | Variables and Statements     | ✅        | ✅         |
 | 03      | Functions                    | ✅️        | ✅️         |
 | 04      | Functions and Interfaces     | ✅️        | ✅️         |
-| 05      | Conditionals and Recursion   | 🔄        | 🔄         |
-| 06      | Return Values                | ⬜        | ⬜         |
+| 05      | Conditionals and Recursion   | ✅️        | ✅️         |
+| 06      | Return Values                | 🔄        | 🔄         |
 | 07      | Iteration                    | ⬜        | ⬜         |
 | 08      | Strings                      | ⬜        | ⬜         |
 | 09      | Lists                        | ⬜        | ⬜         |
