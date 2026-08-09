@@ -11,8 +11,8 @@ Working through *Think Python 3* by Allen B. Downey - exercises and extended pro
 | 03      | Functions                    | ✅️        | ✅️         |
 | 04      | Functions and Interfaces     | ✅️        | ✅️         |
 | 05      | Conditionals and Recursion   | ✅️        | ✅️         |
-| 06      | Return Values                | 🔄        | 🔄         |
-| 07      | Iteration                    | ⬜        | ⬜         |
+| 06      | Return Values                | ✅️        | ✅️         |
+| 07      | Iteration                    | 🔄        | 🔄         |
 | 08      | Strings                      | ⬜        | ⬜         |
 | 09      | Lists                        | ⬜        | ⬜         |
 | 10      | Dictionaries                 | ⬜        | ⬜         |
