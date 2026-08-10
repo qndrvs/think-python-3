@@ -12,8 +12,8 @@ Working through *Think Python 3* by Allen B. Downey - exercises and extended pro
 | 04      | Functions and Interfaces     | ✅️        | ✅️         |
 | 05      | Conditionals and Recursion   | ✅️        | ✅️         |
 | 06      | Return Values                | ✅️        | ✅️         |
-| 07      | Iteration                    | 🔄        | 🔄         |
-| 08      | Strings                      | ⬜        | ⬜         |
+| 07      | Iteration                    | ✅️        | ✅️         |
+| 08      | Strings                      | 🔄        | 🔄         |
 | 09      | Lists                        | ⬜        | ⬜         |
 | 10      | Dictionaries                 | ⬜        | ⬜         |
 | 11      | Tuples                       | ⬜        | ⬜         |
@@ -32,6 +32,12 @@ Working through *Think Python 3* by Allen B. Downey - exercises and extended pro
 
 - Language: Python 3
 - Version control: Git / GitHub
+
+## Datasets
+
+The `data/` folder holds external datasets used across chapter exercises. These aren't original content; they're kept here so the exercises that depend on them run out of the box.
+
+Scripts that read from `data/` assume they're run from the repo root:
 
 ---
 
