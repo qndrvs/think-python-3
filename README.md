@@ -13,8 +13,8 @@ Working through *Think Python 3* by Allen B. Downey - exercises and extended pro
 | 05      | Conditionals and Recursion   | ✅️        | ✅️         |
 | 06      | Return Values                | ✅️        | ✅️         |
 | 07      | Iteration                    | ✅️        | ✅️         |
-| 08      | Strings                      | 🔄        | 🔄         |
-| 09      | Lists                        | ⬜        | ⬜         |
+| 08      | Strings                      | ✅️        | ✅️         |
+| 09      | Lists                        | 🔄        | 🔄         |
 | 10      | Dictionaries                 | ⬜        | ⬜         |
 | 11      | Tuples                       | ⬜        | ⬜         |
 | 12      | Text Analysis and Generation | ⬜        | ⬜         |
