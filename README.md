@@ -15,8 +15,8 @@ Working through *Think Python 3* by Allen B. Downey - exercises and extended pro
 | 07      | Iteration                    | ✅️      | ✅️       |
 | 08      | Strings                      | ✅️      | ✅️       |
 | 09      | Lists                        | ✅️      | ✅️       |
-| 10      | Dictionaries                 | 🔄        | 🔄         |
-| 11      | Tuples                       | ⬜        | ⬜         |
+| 10      | Dictionaries                 | ✅️      | ✅️       |
+| 11      | Tuples                       | 🔄        | 🔄         |
 | 12      | Text Analysis and Generation | ⬜        | ⬜         |
 | 13      | Files and Databases          | ⬜        | ⬜         |
 | 14      | Classes and Functions        | ⬜        | ⬜         |
