@@ -47,7 +47,7 @@ def zipf_table(word_counter: dict, top_n: int = 20):
         print(f'{rank:<8}{word:<8}{freq:<13}{expected_ratio:<18.3f}{actual_ratio:<18.3f}')
 
 # 1.c
-def calculate_mae(word_counter: dict, top_n: int = 20):
+def calculate_mae(word_counter: dict, top_n: int = 20) -> float:
     ordered: list = sorted(word_counter.items(), key = lambda x: x[1], reverse = True)
     freq_rank_1: float = ordered[0][1]
     total: float = 0.0
@@ -107,33 +107,33 @@ def add_trigram(words: list, succ_map: dict):
     else:
         succ_map[key].append(words[2])
 
-def procces_word_trigram(word: str, succ_map: dict):
+def process_word_trigram(word: str, succ_map: dict):
     window.append(word)
     if len(window) == 3:
         add_trigram(window, succ_map)
         window.pop(0)
 
 def build_trigram_successor_map(filename: str) -> dict:
-    succesor_map: dict = {}
+    successor_map: dict = {}
     for line in open(filename, encoding = 'utf-8'):
         for word in clean_line(line):
             word = clean_word(word)
-            procces_word_trigram(word, succesor_map)
-    return succesor_map
+            process_word_trigram(word, successor_map)
+    return successor_map
 
 # 2.b
 def generate_text_trigram(successor_map: dict, n_words: int = 50):
     bigram: tuple = random.choice(list(successor_map))
     print(' '.join(bigram), end = ' ')
-    for i in range(n_words - 3):
+    for i in range(n_words - 2):
         if bigram not in successor_map: bigram = random.choice(list(successor_map))
-        succesors: list = successor_map[(bigram)]
-        next_word: str = random.choice(succesors)
+        successors: list = successor_map[(bigram)]
+        next_word: str = random.choice(successors)
         print(next_word, end = ' ')
         bigram: tuple = (bigram[1], next_word)
 
 # 2.c
-def perplexity_bigram(test_text, bigram_counter):
+def perplexity_bigram(test_text: str, bigram_counter: dict) -> float:
     words = test_text.lower().split()
     N = 0
     log_prob_sum = 0.0
@@ -157,7 +157,7 @@ def perplexity_bigram(test_text, bigram_counter):
         N += 1
     if N == 0: return float('inf')
     perplexity = math.exp(-log_prob_sum / N)
-    
+
     return perplexity
 
 
@@ -202,15 +202,15 @@ def build_ngram_successor_map(text_words: list, n: int) -> dict:
 def generate_text_ngram(successor_map: dict, seed: tuple, n_words: int) -> list:
     if not successor_map: return []
     result: list = list(seed)
-    current_state: list = seed
+    current_state: tuple = seed
     words_to_generate: int = n_words - len(seed)
     for i in range(words_to_generate):
         if current_state not in successor_map: break
-        possible_next_words: str = successor_map[current_state]
+        possible_next_words: list = successor_map[current_state]
         if not possible_next_words: break
         next_word: str = random.choice(possible_next_words)
         result.append(next_word)
         next_state_list: list = list(current_state[1:])
         next_state_list.append(next_word)
         current_state: tuple = tuple(next_state_list)
-    return result   
+    return result

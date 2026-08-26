@@ -10,25 +10,64 @@ a. Can you rewrite this using setdefault?
     def add_bigram(bigram):
         first, second = bigram
         successor_map.setdefault(first, []).append(second)
+        
 b. What are the differences between large language models like GPT and Markov chain text analysis?
-    Son fundamentalmente distintos en mecanismo, aunque comparten el objetivo superficial de "predecir la siguiente palabra". Las diferencias clave:
 
-    1. Orden y memoria del contexto
-    Una cadena de Markov de orden k (como tu bigrama, que es orden 1) predice la siguiente palabra basándose únicamente en las últimas k palabras. No tiene noción de nada más allá de esa ventana fija. Un LLM como GPT usa una arquitectura transformer con mecanismo de self-attention, que le permite condicionar la predicción sobre todo el contexto dentro de su ventana de contexto (que puede ser de miles a cientos de miles de tokens), ponderando dinámicamente qué partes de ese contexto son relevantes para cada predicción — no es una ventana fija de tamaño k con pesos uniformes.
+    They are fundamentally different in mechanism, even though they share
+    the surface-level goal of "predicting the next word." The key
+    differences:
 
-    2. Representación del "estado"
-    En tu implementación, el estado es literalmente la tupla de palabras anteriores (una clave discreta en un diccionario). En un LLM, cada palabra/token se representa como un vector de alta dimensión (embedding) aprendido, y el "estado" tras procesar el contexto es una representación vectorial continua y distribuida — no una clave discreta. Esto le permite capturar relaciones semánticas (que "rey" y "reina" están relacionados) que una tabla de frecuencias de bigramas no puede representar en absoluto.
+    1. Context order and memory
+    A k-th order Markov chain (like your bigram model, which is order 1)
+    predicts the next word based only on the last k words. It has no
+    notion of anything beyond that fixed window. An LLM like GPT uses a
+    transformer architecture with a self-attention mechanism, which lets
+    it condition its prediction on the entire context within its context
+    window (which can range from thousands to hundreds of thousands of
+    tokens), dynamically weighing which parts of that context are
+    relevant to each prediction — it's not a fixed window of size k with
+    uniform weights.
 
-    3. Cómo se estiman las probabilidades
-    Tu modelo de Markov calcula probabilidades por conteo de frecuencias observadas directamente del corpus (frecuentista puro, sin generalización). Un LLM aprende una función mediante descenso de gradiente sobre miles de millones de parámetros, que generaliza a secuencias que nunca vio literalmente en el entrenamiento, porque aprende regularidades estructurales y semánticas, no solo co-ocurrencias exactas.
+    2. "State" representation
+    In your implementation, the state is literally the tuple of previous
+    words (a discrete key in a dictionary). In an LLM, each word/token is
+    represented as a learned high-dimensional vector (embedding), and the
+    "state" after processing the context is a continuous, distributed
+    vector representation — not a discrete key. This lets it capture
+    semantic relationships (that "king" and "queen" are related) that a
+    bigram frequency table cannot represent at all.
 
-    4. Costo de entrenamiento e inferencia
-    Construir tu tabla de bigramas es O(n) en el tamaño del corpus, y la inferencia es una consulta a diccionario O(1). Entrenar un LLM requiere cómputo masivo (GPUs/TPUs durante semanas o meses) y la inferencia requiere una pasada completa por la red (multiplicaciones de matrices en cada una de las decenas de capas del transformer).
+    3. How probabilities are estimated
+    Your Markov model computes probabilities by counting observed
+    frequencies directly from the corpus (pure frequentist approach, no
+    generalization). An LLM learns a function via gradient descent over
+    billions of parameters, which generalizes to sequences it never saw
+    literally during training, because it learns structural and semantic
+    regularities, not just exact co-occurrences.
 
-    5. Coherencia de largo alcance
-    Debido al punto 1, un modelo de Markov de orden bajo genera texto que es localmente plausible (bigrama a bigrama suena "natural") pero globalmente incoherente — no puede mantener un tema, referencia, o estructura gramatical compleja a lo largo de un párrafo, porque olvida todo excepto las últimas k palabras. Un LLM puede mantener coherencia temática y referencial a lo largo de contextos mucho más largos, precisamente porque atiende a todo el contexto simultáneamente.
+    4. Training and inference cost
+    Building your bigram table is O(n) in the size of the corpus, and
+    inference is an O(1) dictionary lookup. Training an LLM requires
+    massive computation (GPUs/TPUs for weeks or months), and inference
+    requires a full forward pass through the network (matrix
+    multiplications across each of the transformer's dozens of layers).
 
-    Relación formal: de hecho, se puede ver a los LLMs como una generalización masiva de las cadenas de Markov — ambos son, en el fondo, modelos que definen una distribución de probabilidad sobre la siguiente palabra condicionada a lo anterior. La diferencia no es conceptual en ese nivel, sino en cómo se aproxima y parametriza esa distribución condicional: tabla de conteos discretos vs. red neuronal profunda con atención.
+    5. Long-range coherence
+    Because of point 1, a low-order Markov model generates text that is
+    locally plausible (bigram to bigram it "sounds natural") but globally
+    incoherent — it can't maintain a topic, a reference, or complex
+    grammatical structure across a paragraph, because it forgets
+    everything except the last k words. An LLM can maintain thematic and
+    referential coherence across much longer contexts, precisely because
+    it attends to the entire context simultaneously.
+
+    Formal relationship: in fact, LLMs can be seen as a massive
+    generalization of Markov chains — both are, at bottom, models that
+    define a probability distribution over the next word conditioned on
+    what came before. The difference isn't conceptual at that level, but
+    in how that conditional distribution is approximated and
+    parameterized: a table of discrete counts vs. a deep neural network
+    with attention.
 """
 
 
@@ -40,7 +79,7 @@ def count_trigram(words: list):
     key: tuple = tuple(words)
     trigram_counter[key] = 1 if key not in trigram_counter else trigram_counter[key] + 1
 
-def procces_word_trigram(word: str):
+def process_word_trigram(word: str):
     window.append(word)
     if len(window) == 3:
         count_trigram(window)
@@ -53,7 +92,7 @@ for line in reader:
     if line.startswith('***'): break
     for word in clean_line(line):
         word = clean_word(word)
-        procces_word_trigram(word)
+        process_word_trigram(word)
 reader.close()
 
 print(sorted(trigram_counter.items(), reverse = True, key = lambda x: x[1])[:4])
@@ -70,7 +109,7 @@ def add_trigram(words: list):
     else:
         successor_map[key].append(words[2])
 
-def procces_word_trigram(word: str):
+def process_word_trigram(word: str):
     window.append(word)
     if len(window) == 3:
         add_trigram(window)
@@ -83,7 +122,7 @@ for line in reader:
     if line.startswith('***'): break
     for word in clean_line(line):
         word = clean_word(word)
-        procces_word_trigram(word)
+        process_word_trigram(word)
 reader.close()
 
 print(successor_map)
@@ -93,8 +132,8 @@ print(successor_map)
 bigram: tuple = random.choice(list(successor_map))
 print(' '.join(bigram), end = ' ')
 for i in range(47):
-    succesors: list = successor_map[(bigram)]
-    next_word: str = random.choice(succesors)
+    successors: list = successor_map[(bigram)]
+    next_word: str = random.choice(successors)
     print(next_word, end = ' ')
     bigram: tuple = (bigram[1], next_word)
 print()
@@ -109,7 +148,7 @@ def add_4gram(words: list):
         successor_map[key] = words[3:]
     else:
         successor_map[key].append(words[3])
-def procces_word_4gram(word: str):
+def process_word_4gram(word: str):
     window.append(word)
     if len(window) == 4:
         add_4gram(window)
@@ -121,12 +160,12 @@ for line in reader:
     if line.startswith('***'): break
     for word in clean_line(line):
         word = clean_word(word)
-        procces_word_4gram(word)
+        process_word_4gram(word)
 reader.close()
-bigram: tuple = random.choice(list(successor_map))
-print(' '.join(bigram), end = ' ')
+trigram_key: tuple = random.choice(list(successor_map))
+print(' '.join(trigram_key), end = ' ')
 for i in range(46):
-    succesors: list = successor_map[(bigram)]
-    next_word: str = random.choice(succesors)
+    successors: list = successor_map[(trigram_key)]
+    next_word: str = random.choice(successors)
     print(next_word, end = ' ')
-    bigram: tuple = (bigram[1], bigram[2], next_word)
+    trigram_key: tuple = (trigram_key[1], trigram_key[2], next_word)
