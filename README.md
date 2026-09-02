@@ -21,8 +21,8 @@ Working through *Think Python 3* by Allen B. Downey - exercises and extended pro
 | 13      | Files and Databases          | ✅️        | ✅️        |
 | 14      | Classes and Functions        | ✅️        | ✅️        |
 | 15      | Classes and Methods          | ✅️        | ✅️        |
-| 16      | Classes and Objects          | 🔄        | 🔄        |
-| 17      | Inheritance                  | ⬜        | ⬜        |
+| 16      | Classes and Objects          | ✅️        | ✅️        |
+| 17      | Inheritance                  | 🔄        | 🔄        |
 | 18      | Python Extras                | ⬜        | ⬜        |
 | 19      | Final Thoughts               | ⬜        | ⬜        |
 
