@@ -23,8 +23,8 @@ Working through *Think Python 3* by Allen B. Downey - exercises and extended pro
 | 15      | Classes and Methods          | ✅️        | ✅️        |
 | 16      | Classes and Objects          | ✅️        | ✅️        |
 | 17      | Inheritance                  | ✅️        | ✅️        |
-| 18      | Python Extras                | 🔄        | 🔄        |
-| 19      | Final Thoughts               | ⬜        | ⬜        |
+| 18      | Python Extras                | ✅️        | ✅️        |
+| 19      | Final Thoughts               | 🔄        | 🔄        |
 
 ⬜ Pending · 🔄 In progress · ✅ Done
 
